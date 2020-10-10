@@ -40,6 +40,7 @@ collision_mask = 12
 script = ExtResource( 2 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
+position = Vector2( -1, 0 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 4 )
 animation = "idle"
@@ -56,6 +57,11 @@ shape = SubResource( 5 )
 
 [node name="Wander" type="Timer" parent="."]
 autostart = true
+
+[node name="Cooldown" type="Timer" parent="."]
+wait_time = 0.75
+one_shot = true
 [connection signal="body_entered" from="TargetFinder" to="." method="_on_TargetFinder_body_entered"]
 [connection signal="body_exited" from="TargetFinder" to="." method="_on_TargetFinder_body_exited"]
 [connection signal="timeout" from="Wander" to="." method="_on_Wander_timeout"]
+[connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

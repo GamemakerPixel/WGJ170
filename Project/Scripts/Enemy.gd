@@ -3,6 +3,7 @@ extends KinematicBody2D
 enum State {SEARCHING, ATTACKING}
 enum Alliance {ENEMY, ALLY}
 
+const BULLET = preload("res://Scenes/Bullet.tscn")
 const SPEED = 200
 
 var state = State.SEARCHING
@@ -10,6 +11,7 @@ var alliance = Alliance.ENEMY
 var target = null
 var direction = Vector2()
 var move = 1
+var can_shoot = true
 
 func _physics_process(delta):
 	if state == State.SEARCHING:
@@ -38,9 +40,24 @@ func attack():
 			target = get_target()
 	elif target.name == "Player" and alliance == Alliance.ALLY:
 		target = get_target()
+	
+	shoot_attempt()
+
+func shoot_attempt():
+	if can_shoot:
+		shoot()
+	elif $Cooldown.time_left == 0:
+		$Cooldown.start()
 
 func shoot():
-	pass
+	can_shoot = false
+	var b = BULLET.instance()
+	get_parent().add_child(b)
+	b.position = position
+	var friendly = false
+	if alliance == Alliance.ALLY:
+		friendly = true
+	b.start((target.position - position).normalized(), friendly)
 
 func wander():
 	var rng = RandomNumberGenerator.new()
@@ -95,3 +112,8 @@ func switch_alliance():
 	target = get_target()
 	if alliance == Alliance.ALLY:
 		modulate = Color(1, 0, 0, 1)
+	else:
+		modulate = Color.white
+
+func _on_Cooldown_timeout():
+	can_shoot = true
