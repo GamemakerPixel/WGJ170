@@ -16,6 +16,10 @@ func _physics_process(delta):
 		shoot()
 		can_shoot = false
 		$Cooldown.start()
+	if Input.is_action_pressed("shoot_against") and can_shoot:
+		shoot(false)
+		can_shoot = false
+		$Cooldown.start()
 	if Input.is_action_pressed("ui_right"):
 		velocity.x = SPEED
 	elif Input.is_action_pressed("ui_left"):
@@ -31,12 +35,12 @@ func _physics_process(delta):
 	update_visuals()
 	move_and_slide(velocity)
 
-func shoot():
+func shoot(alliance = true):
 	var dir = get_local_mouse_position().normalized()
 	var b = BULLET.instance()
 	get_parent().add_child(b)
 	b.position = position
-	b.start(dir, true)
+	b.start(dir, alliance)
 
 func update_visuals():
 	if velocity == Vector2():

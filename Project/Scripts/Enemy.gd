@@ -1,5 +1,7 @@
 extends KinematicBody2D
 
+signal chain_reaction
+
 enum State {SEARCHING, ATTACKING}
 enum Alliance {ENEMY, ALLY}
 
@@ -12,6 +14,14 @@ var target = null
 var direction = Vector2()
 var move = 1
 var can_shoot = true
+var controlling = []
+
+func _draw():
+	for body in controlling:
+		draw_line(Vector2(), body.position - position, Color.white)
+
+func _process(delta):
+	update()
 
 func _physics_process(delta):
 	if state == State.SEARCHING:
@@ -44,20 +54,21 @@ func attack():
 	shoot_attempt()
 
 func shoot_attempt():
-	if can_shoot:
-		shoot()
-	elif $Cooldown.time_left == 0:
-		$Cooldown.start()
+	if target != null:
+		if can_shoot:
+			shoot()
+		elif $Cooldown.time_left == 0:
+			$Cooldown.start()
 
 func shoot():
 	can_shoot = false
 	var b = BULLET.instance()
 	get_parent().add_child(b)
 	b.position = position
-	var friendly = false
 	if alliance == Alliance.ALLY:
-		friendly = true
-	b.start((target.position - position).normalized(), friendly)
+		b.start((target.position - position).normalized(), true, self)
+	else:
+		b.start((target.position - position).normalized(), false, null)
 
 func wander():
 	var rng = RandomNumberGenerator.new()
@@ -104,11 +115,17 @@ func viable_target(body):
 	else:
 		return false
 
-func switch_alliance():
-	if alliance == Alliance.ENEMY:
+func switch_alliance(branch_cut = false):
+	if alliance == Alliance.ENEMY and not branch_cut:
 		alliance = Alliance.ALLY
 	else:
+		for body in controlling:
+			if body.alliance == Alliance.ALLY:
+				body.switch_alliance(true)
+				print(str(self) + " called switch alliance on " + str(body))
+		controlling.clear()
 		alliance = Alliance.ENEMY
+		
 	target = get_target()
 	if alliance == Alliance.ALLY:
 		modulate = Color(1, 0, 0, 1)
