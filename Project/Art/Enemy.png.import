@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/ParallaxBG.png-8fab9294a6755291f9d89c743f82c3bf.stex"
+path="res://.import/Enemy.png-0e3670f81c5d7aaf31e8f0a9fa943b7f.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Temp/ParallaxBG.png"
-dest_files=[ "res://.import/ParallaxBG.png-8fab9294a6755291f9d89c743f82c3bf.stex" ]
+source_file="res://Art/Enemy.png"
+dest_files=[ "res://.import/Enemy.png-0e3670f81c5d7aaf31e8f0a9fa943b7f.stex" ]
 
 [params]
 
