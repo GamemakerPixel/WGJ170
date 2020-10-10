@@ -8,6 +8,7 @@ var can_shoot = true
 var velocity = Vector2()
 
 func _ready():
+	print(self)
 	Input.set_custom_mouse_cursor(load("res://Art/Temp/Cursor.png"), Input.CURSOR_ARROW)
 
 func _physics_process(delta):

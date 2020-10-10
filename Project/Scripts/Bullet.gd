@@ -25,6 +25,7 @@ func hit(body):
 		if (body.alliance == body.Alliance.ALLY) != friendly:
 			if body.alliance == body.Alliance.ENEMY and shot_by != null:
 				shot_by.controlling.append(body)
+				body.controlled_by = shot_by
 			body.switch_alliance()
 			hack()
 	if body.name == "Player":

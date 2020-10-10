@@ -15,6 +15,7 @@ var direction = Vector2()
 var move = 1
 var can_shoot = true
 var controlling = []
+var controlled_by = null
 
 func _draw():
 	for body in controlling:
@@ -119,8 +120,10 @@ func switch_alliance(branch_cut = false):
 	if alliance == Alliance.ENEMY and not branch_cut:
 		alliance = Alliance.ALLY
 	else:
+		if controlled_by != null:
+			controlled_by.controlling.remove(controlled_by.controlling.find(self))
 		for body in controlling:
-			if body.alliance == Alliance.ALLY:
+			if body.alliance == Alliance.ALLY and body != self:
 				body.switch_alliance(true)
 				print(str(self) + " called switch alliance on " + str(body))
 		controlling.clear()
