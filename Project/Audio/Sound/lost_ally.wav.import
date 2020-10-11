@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/lost_ally.wav-e546856d34031e5d960425209a4e1a46.sample"
+
+[deps]
+
+source_file="res://Audio/Sound/lost_ally.wav"
+dest_files=[ "res://.import/lost_ally.wav-e546856d34031e5d960425209a4e1a46.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

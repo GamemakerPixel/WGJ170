@@ -9,7 +9,7 @@ var shot_by = null
 func start(dir, friendly_, shot_by_ = null):
 	friendly = friendly_
 	if not friendly:
-		modulate = Color.blue
+		modulate = Color(0, 1, 0, 1)
 	direction = dir
 	look_at(dir + position)
 	shot_by = shot_by_

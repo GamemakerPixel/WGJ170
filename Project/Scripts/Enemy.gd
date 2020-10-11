@@ -120,7 +120,9 @@ func switch_alliance(branch_cut = false):
 	if alliance == Alliance.ENEMY and not branch_cut:
 		alliance = Alliance.ALLY
 		get_parent().get_node("Player/UI").add_point()
+		$GainedAlly.play()
 	else:
+		$LostAlly.play()
 		if controlled_by != null:
 			controlled_by.controlling.remove(controlled_by.controlling.find(self))
 		for body in controlling:
