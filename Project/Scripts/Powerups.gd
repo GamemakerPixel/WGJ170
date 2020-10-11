@@ -1,9 +1,9 @@
 extends CanvasLayer
 
-enum Power {LINK_BREAK, AOE}
+enum Power {LINK_BREAK, AOE, HEAL}
 
 const IMAGE = preload("res://Art/Powerups.png")
-const power_cost = [500, 200]
+const power_cost = [500, 200, 100]
 
 var menu_open = false
 var power_position = []
@@ -64,19 +64,22 @@ func _process(delta):
 		closest_power = null
 
 func activate_power(power):
-	if power == Power.LINK_BREAK:
-		for ai in get_all_AI():
-			if ai.alliance == ai.Alliance.ALLY:
-				if randi() % 2 == 1:
-					for _ai in ai.controlling:
-						_ai.controlled_by = null
-					ai.controlling.clear()
-	if power == Power.AOE:
-		range_circle_active = true
-		for ai in get_all_AI():
-			pass
-	get_parent().get_node("UI").points -= (power_cost[power]) + 1
-	get_parent().get_node("UI").add_point()
+	if get_parent().get_node("UI").points > (power_cost[power]):
+		if power == Power.LINK_BREAK:
+			for ai in get_all_AI():
+				if ai.alliance == ai.Alliance.ALLY:
+					if randi() % 2 == 1:
+						for _ai in ai.controlling:
+							_ai.controlled_by = null
+						ai.controlling.clear()
+		if power == Power.AOE:
+			range_circle_active = true
+			for ai in get_all_AI():
+				pass
+		if power == Power.HEAL:
+			get_parent().update_health(20)
+		get_parent().get_node("UI").points -= (power_cost[power]) + 1
+		get_parent().get_node("UI").add_point()
 
 func get_all_AI():
 	var ais = []

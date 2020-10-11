@@ -29,9 +29,8 @@ func hit(body):
 					body.controlled_by = shot_by
 			body.switch_alliance()
 			hack()
-	if body.name == "Player":
-		if not friendly:
-			pass
+	if body.name == "Player" and not friendly:
+		body.update_health(-1)
 
 func hack():
 	queue_free()

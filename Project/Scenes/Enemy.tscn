@@ -73,7 +73,12 @@ attenuation = 0.0281641
 stream = ExtResource( 4 )
 volume_db = -17.165
 attenuation = 0.0281641
+
+[node name="Visible" type="VisibilityNotifier2D" parent="."]
+rect = Rect2( -16, -16, 32, 32 )
 [connection signal="body_entered" from="TargetFinder" to="." method="_on_TargetFinder_body_entered"]
 [connection signal="body_exited" from="TargetFinder" to="." method="_on_TargetFinder_body_exited"]
 [connection signal="timeout" from="Wander" to="." method="_on_Wander_timeout"]
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
+[connection signal="screen_entered" from="Visible" to="." method="_on_Visible_screen_entered"]
+[connection signal="screen_exited" from="Visible" to="." method="_on_Visible_screen_exited"]

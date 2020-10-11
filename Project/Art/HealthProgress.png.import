@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Powerups.png-cfdc4a16f9361ff8194bd24c4fc7c006.stex"
+path="res://.import/HealthProgress.png-1320d273d428875f3ee5990192234e60.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Powerups.png"
-dest_files=[ "res://.import/Powerups.png-cfdc4a16f9361ff8194bd24c4fc7c006.stex" ]
+source_file="res://Art/HealthProgress.png"
+dest_files=[ "res://.import/HealthProgress.png-1320d273d428875f3ee5990192234e60.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=true
+flags/filter=false
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

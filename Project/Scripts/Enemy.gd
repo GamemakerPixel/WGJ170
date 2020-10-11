@@ -8,6 +8,8 @@ enum Alliance {ENEMY, ALLY}
 const BULLET = preload("res://Scenes/Bullet.tscn")
 const SPEED = 200
 
+var loaded = true
+
 var state = State.SEARCHING
 var alliance = Alliance.ENEMY
 var target = null
@@ -18,18 +20,20 @@ var controlling = []
 var controlled_by = null
 
 func _draw():
-	for body in controlling:
-		draw_line(Vector2(), body.position - position, Color.white)
+	if loaded:
+		for body in controlling:
+			draw_line(Vector2(), body.position - position, Color.white)
 
 func _process(delta):
 	update()
 
 func _physics_process(delta):
-	if state == State.SEARCHING:
-		move_and_slide((SPEED / 2) * direction)
-	else:
-		attack()
-		move_and_slide(SPEED * direction * move)
+	if loaded:
+		if state == State.SEARCHING:
+			move_and_slide((SPEED / 2) * direction)
+		else:
+			attack()
+			move_and_slide(SPEED * direction * move)
 
 func attack():
 	if position.distance_to(target.position) <= 150:
@@ -55,7 +59,7 @@ func attack():
 	shoot_attempt()
 
 func shoot_attempt():
-	if target != null:
+	if target != null and loaded:
 		if can_shoot:
 			shoot()
 		elif $Cooldown.time_left == 0:
@@ -84,7 +88,7 @@ func _on_TargetFinder_body_entered(body):
 			state = State.ATTACKING
 
 func _on_Wander_timeout():
-	if state == State.SEARCHING:
+	if state == State.SEARCHING and loaded:
 		wander()
 
 func _on_TargetFinder_body_exited(body):
@@ -145,3 +149,9 @@ func count_controlled():
 	for node in controlling:
 		counted += node.count_controlled()
 	return counted
+
+func _on_Visible_screen_exited():
+	loaded = false
+
+func _on_Visible_screen_entered():
+	loaded = true
