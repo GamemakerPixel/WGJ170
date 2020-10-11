@@ -117,7 +117,6 @@ func viable_target(body):
 		return false
 
 func switch_alliance(branch_cut = false):
-	get_parent().get_node("Player/UI").get_stability()
 	if alliance == Alliance.ENEMY and not branch_cut:
 		alliance = Alliance.ALLY
 		get_parent().get_node("Player/UI").add_point()
@@ -128,7 +127,8 @@ func switch_alliance(branch_cut = false):
 			if body.alliance == Alliance.ALLY and body != self:
 				body.switch_alliance(true)
 		alliance = Alliance.ENEMY
-	controlling.clear()
+		controlling.clear()
+		controlled_by = null
 	target = get_target()
 	if alliance == Alliance.ALLY:
 		modulate = Color(1, 0, 0, 1)
@@ -137,3 +137,9 @@ func switch_alliance(branch_cut = false):
 
 func _on_Cooldown_timeout():
 	can_shoot = true
+
+func count_controlled():
+	var counted = controlling.size()
+	for node in controlling:
+		counted += node.count_controlled()
+	return counted

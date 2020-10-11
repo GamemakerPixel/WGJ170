@@ -1,10 +1,15 @@
 extends CanvasLayer
 
 var points = 0
-var friendliness = 0
+var stat_data = [0, 0, 0]
 
 func _process(delta):
-	$Friendly.text = str(get_friendliness()) + "% Friendly"
+	stat_data[0] = get_friendliness()
+	stat_data[1] = get_stability()
+	stat_data[2] = 100.0 * ((stat_data[0]/100.0) * (stat_data[1]/100.0))
+	$Friendly.text = str(stat_data[0]) + "% Friendly"
+	$Stability.text = str(stat_data[1]) + "% Stable"
+	$Control.text = str(stat_data[2]) + "% Total Control"
 
 func add_point():
 	points += 1
@@ -34,25 +39,19 @@ func get_stability():
 		if node.has_method("switch_alliance"):
 			if node.alliance == 1 and node.controlled_by == null:
 				chains.append(node)
-	while chains.size() > 0:
-		for chain in chains:
-			chain_sizes.append(get_chain_length(chain))
-	print(chain_sizes)
+	for chain in chains:
+		chain_sizes.append(chain.count_controlled() + 1)
+	
+	var average = average_denominator(chain_sizes)
+	stability_percent = round(average * 100.0)
+	return stability_percent
 
-func get_chain_length(chain):
-	#var length = 1
-	#if chain.controlling.size() > 0:
-		#length += get_subchain(chain)
-	#else:
-		#return length
-	return 1
-
-func get_subchain(subchain):
-	var subchain_length = 1
-	for branch in subchain.controlling:
-		if branch.controlling.size() > 0:
-			for twig in branch.controlling:
-				subchain_length += get_subchain(twig)
-		else:
-			subchain_length += 1
-	return subchain_length
+func average_denominator(data:Array):
+	var sum = 0.0
+	var count = data.size()
+	var average = 0.0
+	for value in data:
+		sum += 1.0/float(value)
+	if count != 0:
+		average = sum/float(count)
+	return average
