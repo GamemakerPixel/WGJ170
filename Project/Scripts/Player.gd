@@ -22,7 +22,7 @@ func _draw():
 func _physics_process(delta):
 	update()
 	$CollisionPolygon2D.position = Vector2()
-	if Input.is_action_pressed("shoot") and can_shoot:
+	if Input.is_action_pressed("shoot") and can_shoot and not ($Powerups.menu_open or $Powerups.range_circle_active):
 		shoot()
 		can_shoot = false
 		$Cooldown.start()

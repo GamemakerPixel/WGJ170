@@ -16,4 +16,6 @@ func spawn_enemy():
 	if $SpawnCooldown.wait_time < 0.1:
 		$SpawnCooldown.wait_time = 0
 	$SpawnCooldown.start()
-	print("Spawned " + str(e))
+
+func get_position_from_world_mouse(position_):
+	return get_local_mouse_position().distance_to(position_)

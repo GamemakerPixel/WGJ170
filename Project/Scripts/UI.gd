@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-var points = 0
+var points = 600
 var stat_data = [0, 0, 0]
 
 func _process(delta):

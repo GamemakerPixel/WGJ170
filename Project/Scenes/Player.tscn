@@ -1,10 +1,12 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Player.png" type="Texture" id=2]
 [ext_resource path="res://Art/Temp/ParallaxBG.png" type="Texture" id=3]
 [ext_resource path="res://Fonts/Data/ChargerHemiRt-W9rz.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://Scripts/UI.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Powerups.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/Origin.gd" type="Script" id=7]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 2 )
@@ -44,7 +46,7 @@ font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 9
-collision_mask = 12
+collision_mask = 4
 script = ExtResource( 1 )
 
 [node name="Sprite" type="AnimatedSprite" parent="."]
@@ -157,4 +159,13 @@ align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Powerups" type="CanvasLayer" parent="."]
+script = ExtResource( 6 )
+
+[node name="Origin" type="Node2D" parent="Powerups"]
+script = ExtResource( 7 )
+
+[node name="PowerCenter" type="Node2D" parent="Powerups"]
+visible = false
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
