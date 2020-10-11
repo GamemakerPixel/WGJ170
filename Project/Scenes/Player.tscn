@@ -1,8 +1,10 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Player.png" type="Texture" id=2]
 [ext_resource path="res://Art/Temp/ParallaxBG.png" type="Texture" id=3]
+[ext_resource path="res://Fonts/Data/ChargerHemiRt-W9rz.otf" type="DynamicFontData" id=4]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=5]
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 2 )
@@ -31,6 +33,14 @@ animations = [ {
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 48
+font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 32
+font_data = ExtResource( 4 )
 
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 9
@@ -96,4 +106,43 @@ one_shot = true
 visible = false
 polygon = PoolVector2Array( -1000, -1000, 1000, -1000, 1000, 1000, -1000, 1000, -1000, -999, -998, -998, -998, 998, 998, 998, 998, -998, -998, -998 )
 disabled = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 5 )
+
+[node name="Points" type="Label" parent="UI"]
+margin_left = 733.0
+margin_top = 20.0
+margin_right = 1004.0
+margin_bottom = 69.0
+custom_fonts/font = SubResource( 6 )
+text = "0 Points"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Friendly" type="Label" parent="UI"]
+margin_left = 802.0
+margin_top = 69.0
+margin_right = 1004.0
+margin_bottom = 102.0
+custom_fonts/font = SubResource( 7 )
+text = "100% Friendly"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Stability" type="Label" parent="UI"]
+margin_left = 827.0
+margin_top = 102.0
+margin_right = 1003.0
+margin_bottom = 135.0
+custom_fonts/font = SubResource( 7 )
+text = "100% Stable"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]

@@ -1,92 +1,15 @@
 [gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
-[ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scripts/World.gd" type="Script" id=2]
 
 [node name="World" type="Node2D"]
+script = ExtResource( 2 )
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
 
-[node name="Enemy" parent="." instance=ExtResource( 2 )]
-position = Vector2( 365, 181 )
-
-[node name="Enemy2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 365.5, 101.5 )
-
-[node name="Enemy3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 282.738, 138.637 )
-
-[node name="Enemy4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 291.226, 45.2643 )
-
-[node name="Enemy5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 186.182, 63.3022 )
-
-[node name="Enemy6" parent="." instance=ExtResource( 2 )]
-position = Vector2( 207.403, 161.98 )
-
-[node name="Enemy7" parent="." instance=ExtResource( 2 )]
-position = Vector2( 126.763, 117.416 )
-
-[node name="Enemy8" parent="." instance=ExtResource( 2 )]
-position = Vector2( 753.345, 196.916 )
-
-[node name="Enemy9" parent="." instance=ExtResource( 2 )]
-position = Vector2( 753.845, 117.416 )
-
-[node name="Enemy10" parent="." instance=ExtResource( 2 )]
-position = Vector2( 671.083, 154.553 )
-
-[node name="Enemy11" parent="." instance=ExtResource( 2 )]
-position = Vector2( 679.571, 61.1801 )
-
-[node name="Enemy12" parent="." instance=ExtResource( 2 )]
-position = Vector2( 574.527, 79.2179 )
-
-[node name="Enemy13" parent="." instance=ExtResource( 2 )]
-position = Vector2( 595.748, 177.896 )
-
-[node name="Enemy14" parent="." instance=ExtResource( 2 )]
-position = Vector2( 515.108, 133.332 )
-
-[node name="Enemy15" parent="." instance=ExtResource( 2 )]
-position = Vector2( 773.505, 425.042 )
-
-[node name="Enemy16" parent="." instance=ExtResource( 2 )]
-position = Vector2( 774.005, 345.542 )
-
-[node name="Enemy17" parent="." instance=ExtResource( 2 )]
-position = Vector2( 691.243, 382.679 )
-
-[node name="Enemy18" parent="." instance=ExtResource( 2 )]
-position = Vector2( 699.731, 289.306 )
-
-[node name="Enemy19" parent="." instance=ExtResource( 2 )]
-position = Vector2( 594.687, 307.344 )
-
-[node name="Enemy20" parent="." instance=ExtResource( 2 )]
-position = Vector2( 615.908, 406.022 )
-
-[node name="Enemy21" parent="." instance=ExtResource( 2 )]
-position = Vector2( 535.268, 361.458 )
-
-[node name="Enemy22" parent="." instance=ExtResource( 2 )]
-position = Vector2( 378.793, 428.225 )
-
-[node name="Enemy23" parent="." instance=ExtResource( 2 )]
-position = Vector2( 379.293, 348.725 )
-
-[node name="Enemy24" parent="." instance=ExtResource( 2 )]
-position = Vector2( 296.531, 385.862 )
-
-[node name="Enemy25" parent="." instance=ExtResource( 2 )]
-position = Vector2( 305.02, 292.489 )
-
-[node name="Enemy26" parent="." instance=ExtResource( 2 )]
-position = Vector2( 199.976, 310.527 )
-
-[node name="Enemy27" parent="." instance=ExtResource( 2 )]
-position = Vector2( 221.197, 409.205 )
-
-[node name="Enemy28" parent="." instance=ExtResource( 2 )]
-position = Vector2( 140.557, 364.641 )
+[node name="SpawnCooldown" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+autostart = true
+[connection signal="timeout" from="SpawnCooldown" to="." method="spawn_enemy"]

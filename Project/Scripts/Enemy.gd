@@ -117,18 +117,18 @@ func viable_target(body):
 		return false
 
 func switch_alliance(branch_cut = false):
+	get_parent().get_node("Player/UI").get_stability()
 	if alliance == Alliance.ENEMY and not branch_cut:
 		alliance = Alliance.ALLY
+		get_parent().get_node("Player/UI").add_point()
 	else:
 		if controlled_by != null:
 			controlled_by.controlling.remove(controlled_by.controlling.find(self))
 		for body in controlling:
 			if body.alliance == Alliance.ALLY and body != self:
 				body.switch_alliance(true)
-				print(str(self) + " called switch alliance on " + str(body))
-		controlling.clear()
 		alliance = Alliance.ENEMY
-		
+	controlling.clear()
 	target = get_target()
 	if alliance == Alliance.ALLY:
 		modulate = Color(1, 0, 0, 1)

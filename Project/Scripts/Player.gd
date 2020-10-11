@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 175
 const BULLET = preload("res://Scenes/Bullet.tscn")
+const ARROW_TEXTURE = preload("res://Art/Temp/Cursor.png")
 
 var can_shoot = true
 
@@ -11,7 +12,15 @@ func _ready():
 	print(self)
 	Input.set_custom_mouse_cursor(load("res://Art/Temp/Cursor.png"), Input.CURSOR_ARROW)
 
+func _draw():
+	for child in get_parent().get_children():
+		if child.has_method("switch_alliance"):
+			if child.alliance == 0:
+				var dir = (child.position - position).normalized()
+				draw_texture(ARROW_TEXTURE, dir * 200)
+
 func _physics_process(delta):
+	update()
 	$CollisionPolygon2D.position = Vector2()
 	if Input.is_action_pressed("shoot") and can_shoot:
 		shoot()
