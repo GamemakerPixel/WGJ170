@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 const SPEED = 175
 const BULLET = preload("res://Scenes/Bullet.tscn")
-const ARROW_TEXTURE = preload("res://Art/Temp/Cursor.png")
+const ARROW_TEXTURE = preload("res://Art/Enemy Warning.png")
 
 export (Gradient) var health_gradient
 
