@@ -49,13 +49,15 @@ func _physics_process(delta):
 	move_and_slide(velocity)
 
 func update_health(amount:int):
+	if amount < 0:
+		$Hit.play()
 	health += amount
 	if health > 100:
 		health = 100
 	$UI/Health.value = health
 	$UI/Health.modulate = health_gradient.interpolate(float(health) / float($UI/Health.max_value))
 	if health <= 0:
-		print("!! GAME OVER !!")
+		$Defeat.play()
 
 func shoot(alliance = true):
 	var dir = get_local_mouse_position().normalized()
@@ -76,3 +78,6 @@ func update_visuals():
 
 func _on_Cooldown_timeout():
 	can_shoot = true
+
+func _on_Defeat_finished():
+	get_tree().reload_current_scene()

@@ -8,11 +8,15 @@ var shot_by = null
 
 func start(dir, friendly_, shot_by_ = null):
 	friendly = friendly_
-	if not friendly:
-		modulate = Color(0, 1, 0, 1)
 	direction = dir
 	look_at(dir + position)
 	shot_by = shot_by_
+	load_graphics()
+
+func load_graphics():
+	if not friendly:
+		$Sprite.play("enemy")
+		$Sprite/Particles2D.process_material = load("res://Resources/Particles/EnemyBullet.tres")
 
 func _physics_process(delta):
 	position += direction * SPEED

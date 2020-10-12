@@ -125,8 +125,10 @@ func switch_alliance(branch_cut = false):
 		alliance = Alliance.ALLY
 		get_parent().get_node("Player/UI").add_point()
 		$GainedAlly.play()
+		$Sprite.frames = load("res://Resources/SpriteFrames/Ally.tres")
 	else:
 		$LostAlly.play()
+		$Sprite.frames = load("res://Resources/SpriteFrames/Enemy.tres")
 		if controlled_by != null:
 			controlled_by.controlling.remove(controlled_by.controlling.find(self))
 		for body in controlling:
@@ -136,10 +138,6 @@ func switch_alliance(branch_cut = false):
 		controlling.clear()
 		controlled_by = null
 	target = get_target()
-	if alliance == Alliance.ALLY:
-		modulate = Color(1, 0, 0, 1)
-	else:
-		modulate = Color.white
 
 func _on_Cooldown_timeout():
 	can_shoot = true

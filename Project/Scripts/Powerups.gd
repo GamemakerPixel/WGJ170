@@ -65,6 +65,7 @@ func _process(delta):
 
 func activate_power(power):
 	if get_parent().get_node("UI").points > (power_cost[power]):
+		$PowerUsed.play()
 		if power == Power.LINK_BREAK:
 			for ai in get_all_AI():
 				if ai.alliance == ai.Alliance.ALLY:
