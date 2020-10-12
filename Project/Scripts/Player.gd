@@ -13,7 +13,7 @@ onready var health = $UI/Health.max_value
 
 func _ready():
 	update_health(0)
-	Input.set_custom_mouse_cursor(load("res://Art/Temp/Cursor.png"), Input.CURSOR_ARROW)
+	Input.set_custom_mouse_cursor(load("res://Art/Cursor4.png"), Input.CURSOR_ARROW)
 
 func _draw():
 	for child in get_parent().get_children():
