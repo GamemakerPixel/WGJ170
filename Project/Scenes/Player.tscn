@@ -46,11 +46,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="DynamicFont" id=10]
+[sub_resource type="DynamicFont" id=7]
 size = 48
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=11]
+[sub_resource type="DynamicFont" id=8]
 size = 32
 font_data = ExtResource( 4 )
 
@@ -76,6 +76,8 @@ drag_margin_right = 0.5
 shape = SubResource( 6 )
 
 [node name="HitParticles" parent="." instance=ExtResource( 13 )]
+emitting = false
+one_shot = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -130,7 +132,7 @@ margin_left = 733.0
 margin_top = 20.0
 margin_right = 1004.0
 margin_bottom = 69.0
-custom_fonts/font = SubResource( 10 )
+custom_fonts/font = SubResource( 7 )
 text = "0 Points"
 align = 2
 __meta__ = {
@@ -142,7 +144,7 @@ margin_left = 802.0
 margin_top = 69.0
 margin_right = 1004.0
 margin_bottom = 102.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 text = "100% Friendly"
 align = 2
 __meta__ = {
@@ -154,7 +156,7 @@ margin_left = 827.0
 margin_top = 102.0
 margin_right = 1003.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 text = "100% Stable"
 align = 2
 __meta__ = {
@@ -166,7 +168,7 @@ margin_left = 726.0
 margin_top = 135.0
 margin_right = 1004.0
 margin_bottom = 168.0
-custom_fonts/font = SubResource( 11 )
+custom_fonts/font = SubResource( 8 )
 text = "100% Total Control"
 align = 2
 __meta__ = {

@@ -24,9 +24,8 @@ func _ready():
 		loaded = false
 
 func _draw():
-	if loaded:
-		for body in controlling:
-			draw_line(Vector2(), body.position - position, Color.white)
+	for body in controlling:
+		draw_line(Vector2(), body.position - position, Color.yellow)
 
 func _process(delta):
 	update()
