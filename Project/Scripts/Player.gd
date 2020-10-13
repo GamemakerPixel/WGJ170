@@ -14,6 +14,7 @@ onready var health = $UI/Health.max_value
 func _ready():
 	update_health(0)
 	Input.set_custom_mouse_cursor(load("res://Art/Cursor4.png"), Input.CURSOR_ARROW)
+	$HitParticles.emitting = false
 
 func _draw():
 	for child in get_parent().get_children():
@@ -51,13 +52,15 @@ func _physics_process(delta):
 func update_health(amount:int):
 	if amount < 0:
 		$Hit.play()
+		run_hit_particles()
 	health += amount
 	if health > 100:
 		health = 100
 	$UI/Health.value = health
 	$UI/Health.modulate = health_gradient.interpolate(float(health) / float($UI/Health.max_value))
 	if health <= 0:
-		$Defeat.play()
+		if not $Defeat.playing:
+			$Defeat.play()
 
 func shoot(alliance = true):
 	var dir = get_local_mouse_position().normalized()
@@ -81,3 +84,8 @@ func _on_Cooldown_timeout():
 
 func _on_Defeat_finished():
 	get_tree().reload_current_scene()
+
+func run_hit_particles():
+	var p = load("res://Scenes/Effects/HitParticles.tscn").instance()
+	add_child(p)
+	p.run()

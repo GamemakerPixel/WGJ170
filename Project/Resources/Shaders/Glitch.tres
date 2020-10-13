@@ -1,0 +1,48 @@
+[gd_resource type="ShaderMaterial" load_steps=3 format=2]
+
+[ext_resource path="res://Art/HealthProgress.png" type="Texture" id=1]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform bool ca_apply = true;
+uniform bool gs_apply = true;
+uniform float ca_amount = 2.0;
+uniform float gs_amount = 1.0;
+uniform sampler2D ca_offset_texture : hint_white;
+uniform sampler2D gs_offset_texture : hint_white;
+
+float rand(vec2 co){
+    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);
+}
+
+void fragment(){
+	vec4 texture_color = texture(TEXTURE, UV);
+	vec4 color = texture_color;
+	
+	if (ca_apply == true) {
+		float random_float = rand(vec2(TIME, 0.0));
+		float adjusted_amount = random_float * ca_amount * texture(ca_offset_texture, UV).r / 100.0;
+		color.r = texture(TEXTURE, vec2(UV.x + adjusted_amount, UV.y)).r;
+		color.g = texture(TEXTURE, UV).g;
+		color.b = texture(TEXTURE, vec2(UV.x - adjusted_amount, UV.y)).b;
+	}
+	if (gs_apply == true){
+		float multiplier = rand(vec2(TIME, 0.0)) - 0.5;
+		float random_float = rand(vec2(TIME, 0.0)) * -1.0;
+		float adjusted_amount = multiplier * random_float * gs_amount * texture(gs_offset_texture, UV).r / 100.0;
+		vec4 gs_color = texture(TEXTURE, vec2(UV.x + adjusted_amount, UV.y));
+		color += gs_color;// - texture_color;
+		color -= texture_color;
+	}
+	COLOR = color;
+}"
+
+[resource]
+shader = SubResource( 1 )
+shader_param/ca_apply = true
+shader_param/gs_apply = true
+shader_param/ca_amount = 3.0
+shader_param/gs_amount = 1.0
+shader_param/ca_offset_texture = ExtResource( 1 )
+shader_param/gs_offset_texture = ExtResource( 1 )

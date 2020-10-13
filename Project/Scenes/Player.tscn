@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Player.png" type="Texture" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://Audio/Sound/player_hit.wav" type="AudioStream" id=10]
 [ext_resource path="res://Audio/Sound/power.wav" type="AudioStream" id=11]
 [ext_resource path="res://Audio/Sound/defeat.wav" type="AudioStream" id=12]
+[ext_resource path="res://Scenes/Effects/HitParticles.tscn" type="PackedScene" id=13]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.00292398, 1 )
@@ -45,11 +46,11 @@ animations = [ {
 [sub_resource type="RectangleShape2D" id=6]
 extents = Vector2( 16, 16 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=10]
 size = 48
 font_data = ExtResource( 4 )
 
-[sub_resource type="DynamicFont" id=8]
+[sub_resource type="DynamicFont" id=11]
 size = 32
 font_data = ExtResource( 4 )
 
@@ -73,6 +74,8 @@ drag_margin_right = 0.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 6 )
+
+[node name="HitParticles" parent="." instance=ExtResource( 13 )]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -127,7 +130,7 @@ margin_left = 733.0
 margin_top = 20.0
 margin_right = 1004.0
 margin_bottom = 69.0
-custom_fonts/font = SubResource( 7 )
+custom_fonts/font = SubResource( 10 )
 text = "0 Points"
 align = 2
 __meta__ = {
@@ -139,7 +142,7 @@ margin_left = 802.0
 margin_top = 69.0
 margin_right = 1004.0
 margin_bottom = 102.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 text = "100% Friendly"
 align = 2
 __meta__ = {
@@ -151,7 +154,7 @@ margin_left = 827.0
 margin_top = 102.0
 margin_right = 1003.0
 margin_bottom = 135.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 text = "100% Stable"
 align = 2
 __meta__ = {
@@ -163,7 +166,7 @@ margin_left = 726.0
 margin_top = 135.0
 margin_right = 1004.0
 margin_bottom = 168.0
-custom_fonts/font = SubResource( 8 )
+custom_fonts/font = SubResource( 11 )
 text = "100% Total Control"
 align = 2
 __meta__ = {

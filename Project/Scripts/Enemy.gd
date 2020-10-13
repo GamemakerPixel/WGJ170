@@ -19,6 +19,10 @@ var can_shoot = true
 var controlling = []
 var controlled_by = null
 
+func _ready():
+	if not $Visible.is_on_screen():
+		loaded = false
+
 func _draw():
 	if loaded:
 		for body in controlling:
