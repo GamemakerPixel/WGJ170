@@ -257,6 +257,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=16]
+resource_name = "enter"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:offset")
