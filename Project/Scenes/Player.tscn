@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/Player.png" type="Texture" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Audio/Sound/power.wav" type="AudioStream" id=11]
 [ext_resource path="res://Audio/Sound/defeat.wav" type="AudioStream" id=12]
 [ext_resource path="res://Scenes/Effects/HitParticles.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Scripts/SoundFX.gd" type="Script" id=14]
 
 [sub_resource type="Gradient" id=1]
 offsets = PoolRealArray( 0.00292398, 1 )
@@ -76,8 +77,6 @@ drag_margin_right = 0.5
 shape = SubResource( 6 )
 
 [node name="HitParticles" parent="." instance=ExtResource( 13 )]
-emitting = false
-one_shot = true
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -209,13 +208,16 @@ visible = false
 [node name="PowerUsed" type="AudioStreamPlayer" parent="Powerups"]
 stream = ExtResource( 11 )
 volume_db = -3.0
+script = ExtResource( 14 )
 
 [node name="Hit" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 10 )
 volume_db = -5.0
+script = ExtResource( 14 )
 
 [node name="Defeat" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 12 )
 volume_db = -5.0
+script = ExtResource( 14 )
 [connection signal="timeout" from="Cooldown" to="." method="_on_Cooldown_timeout"]
 [connection signal="finished" from="Defeat" to="." method="_on_Defeat_finished"]
