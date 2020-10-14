@@ -257,7 +257,6 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id=16]
-resource_name = "enter"
 length = 0.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:offset")
@@ -336,6 +335,7 @@ custom_fonts/font = SubResource( 6 )
 text = "How to Play"
 flat = true
 script = ExtResource( 3 )
+next_scene = "res://Scenes/Instruction.tscn"
 
 [node name="Animation" type="AnimationPlayer" parent="Buttons/Instruction"]
 anims/_hover = SubResource( 7 )

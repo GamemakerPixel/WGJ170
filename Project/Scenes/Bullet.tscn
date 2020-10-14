@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://Art/BulletFriendly.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Bullet.gd" type="Script" id=2]
 [ext_resource path="res://Art/WGJ170 Enemy Bullet.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Particles/FriendlyBullet.tres" type="Material" id=4]
+[ext_resource path="res://Audio/Sound/shoot.wav" type="AudioStream" id=5]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -60,5 +61,9 @@ shape = SubResource( 6 )
 position = Vector2( 0, 0.251156 )
 scale = Vector2( 1, 1.02512 )
 rect = Rect2( -8, -2, 16, 4 )
+
+[node name="FX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource( 5 )
+volume_db = -10.602
 [connection signal="body_entered" from="." to="." method="hit"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="left_screen"]

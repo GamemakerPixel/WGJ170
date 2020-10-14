@@ -12,6 +12,11 @@ func start(dir, friendly_, shot_by_ = null):
 	look_at(dir + position)
 	shot_by = shot_by_
 	load_graphics()
+	
+	randomize()
+	var fx_pitch = float(randi() % 50 + 100) / 100.0
+	$FX.pitch_scale = fx_pitch
+	$FX.play()
 
 func load_graphics():
 	if not friendly:

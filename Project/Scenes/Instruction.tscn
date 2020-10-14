@@ -1,8 +1,14 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Scripts/MenuCam.gd" type="Script" id=1]
 [ext_resource path="res://Art/Enemy.png" type="Texture" id=2]
 [ext_resource path="res://Art/Ally.png" type="Texture" id=3]
+[ext_resource path="res://Art/Arrow2.png" type="Texture" id=4]
+[ext_resource path="res://Fonts/Data/PolandCannedIntoFuture-OxE3.ttf" type="DynamicFontData" id=5]
+[ext_resource path="res://Art/YellowLine.png" type="Texture" id=6]
+[ext_resource path="res://Art/Powerups.png" type="Texture" id=7]
+[ext_resource path="res://Art/UI Controls.png" type="Texture" id=8]
+[ext_resource path="res://Scenes/Instruction.gd" type="Script" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "enter"
@@ -22,10 +28,199 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "AB"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("A:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("B:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=23]
+resource_name = "BC"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("B:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("C:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=24]
+resource_name = "CD"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("C:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=25]
+resource_name = "DE"
+tracks/0/type = "value"
+tracks/0/path = NodePath("D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ColorRect:color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="DynamicFont" id=3]
+size = 48
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 40
+font_data = ExtResource( 5 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 32, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=7]
+atlas = ExtResource( 7 )
+region = Rect2( 64, 64, 32, 32 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 64
+font_data = ExtResource( 5 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 32
+font_data = ExtResource( 5 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 0, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 16, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 8 )
+region = Rect2( 16, 48, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 32, 16, 16 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 48, 16, 16 )
 
 [node name="Instruction" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+script = ExtResource( 9 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -41,6 +236,7 @@ __meta__ = {
 
 [node name="Camera" type="Camera2D" parent="."]
 position = Vector2( 512, 300 )
+current = true
 script = ExtResource( 1 )
 
 [node name="Animation" type="AnimationPlayer" parent="Camera"]
@@ -48,17 +244,311 @@ anims/enter = SubResource( 1 )
 
 [node name="Animations" type="AnimationPlayer" parent="."]
 anims/AB = SubResource( 2 )
+anims/BC = SubResource( 23 )
+anims/CD = SubResource( 24 )
+anims/DE = SubResource( 25 )
 
-[node name="Ally" type="Sprite" parent="."]
+[node name="A" type="Node2D" parent="."]
+
+[node name="Ally" type="Sprite" parent="A"]
 position = Vector2( 256, 300 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 3 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
 
-[node name="Enemy" type="Sprite" parent="."]
+[node name="Enemy" type="Sprite" parent="A"]
 position = Vector2( 768, 300 )
 scale = Vector2( 8, 8 )
 texture = ExtResource( 2 )
 region_enabled = true
 region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Arrow" type="Sprite" parent="A"]
+position = Vector2( 512, 268 )
+rotation = -3.14159
+scale = Vector2( 8, 8 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Arrow2" type="Sprite" parent="A"]
+position = Vector2( 512, 332 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Explaination" type="Label" parent="A"]
+margin_left = 100.0
+margin_top = 400.0
+margin_right = 924.0
+margin_bottom = 600.0
+custom_fonts/font = SubResource( 3 )
+text = "Defeated enemies become allies and defeated allies become enemies."
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AllyLabel" type="Label" parent="A"]
+margin_left = 192.0
+margin_top = 172.0
+margin_right = 320.0
+margin_bottom = 222.0
+custom_fonts/font = SubResource( 3 )
+text = "Ally"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="EnemyLabel" type="Label" parent="A"]
+margin_left = 704.0
+margin_top = 172.0
+margin_right = 832.0
+margin_bottom = 222.0
+custom_fonts/font = SubResource( 3 )
+text = "Enemy"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Enter" type="Label" parent="A"]
+margin_right = 1024.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.639216, 0.639216, 0.639216, 1 )
+text = "Press ENTER to continue"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="B" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="Line" type="Sprite" parent="B"]
+position = Vector2( 512, 300 )
+scale = Vector2( 8, 4 )
+texture = ExtResource( 6 )
+
+[node name="Ally" type="Sprite" parent="B"]
+position = Vector2( 256, 300 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Enemy" type="Sprite" parent="B"]
+position = Vector2( 768, 300 )
+scale = Vector2( 8, 8 )
+texture = ExtResource( 3 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 16 )
+
+[node name="Explaination" type="Label" parent="B"]
+margin_left = 100.0
+margin_top = 375.0
+margin_right = 924.0
+margin_bottom = 580.0
+custom_fonts/font = SubResource( 4 )
+text = "When an ally defeats an enemy, they become tied
+When an ally is converted to an enemy, all the enemies it defeated become enemies again"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="C" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="Bonds" type="Sprite" parent="C"]
+position = Vector2( 256, 300 )
+scale = Vector2( 3, 3 )
+texture = SubResource( 5 )
+
+[node name="Cloud" type="Sprite" parent="C"]
+position = Vector2( 512, 300 )
+scale = Vector2( 3, 3 )
+texture = SubResource( 6 )
+
+[node name="Health" type="Sprite" parent="C"]
+position = Vector2( 768, 300 )
+scale = Vector2( 3, 3 )
+texture = SubResource( 7 )
+
+[node name="BondsLabel" type="Label" parent="C"]
+margin_left = 129.0
+margin_top = 375.0
+margin_right = 383.0
+margin_bottom = 588.0
+custom_fonts/font = SubResource( 8 )
+text = "Destroys half the connections between allies making chain reactions less damaging"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CloudLabel" type="Label" parent="C"]
+margin_left = 385.0
+margin_top = 375.0
+margin_right = 639.0
+margin_bottom = 588.0
+custom_fonts/font = SubResource( 8 )
+text = "Infects all enemies within range of a circle (around the mouse"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HealthLabel" type="Label" parent="C"]
+margin_left = 641.0
+margin_top = 375.0
+margin_right = 895.0
+margin_bottom = 588.0
+custom_fonts/font = SubResource( 8 )
+text = "Returns a fifth of your health"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Powerups" type="Label" parent="C"]
+margin_right = 1024.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 9 )
+text = "Powerups"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Explaination" type="Label" parent="C"]
+margin_top = 100.0
+margin_right = 1024.0
+margin_bottom = 200.0
+custom_fonts/font = SubResource( 10 )
+text = "Spend points on powerups"
+align = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="D" type="Node2D" parent="."]
+modulate = Color( 1, 1, 1, 0 )
+
+[node name="0" type="Sprite" parent="D"]
+position = Vector2( 256, 200 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 11 )
+
+[node name="1" type="Sprite" parent="D"]
+position = Vector2( 256, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 12 )
+
+[node name="2" type="Sprite" parent="D"]
+position = Vector2( 160, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 13 )
+
+[node name="3" type="Sprite" parent="D"]
+position = Vector2( 352, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 14 )
+
+[node name="4" type="Sprite" parent="D"]
+position = Vector2( 768, 200 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 15 )
+
+[node name="5" type="Sprite" parent="D"]
+position = Vector2( 768, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 16 )
+
+[node name="6" type="Sprite" parent="D"]
+position = Vector2( 672, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 17 )
+
+[node name="7" type="Sprite" parent="D"]
+position = Vector2( 864, 296 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 18 )
+
+[node name="8" type="Sprite" parent="D"]
+position = Vector2( 208, 500 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 19 )
+
+[node name="9" type="Sprite" parent="D"]
+position = Vector2( 304, 500 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 20 )
+
+[node name="10" type="Sprite" parent="D"]
+position = Vector2( 720, 500 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 21 )
+
+[node name="11" type="Sprite" parent="D"]
+position = Vector2( 816, 500 )
+scale = Vector2( 6, 6 )
+texture = SubResource( 22 )
+
+[node name="Move" type="Label" parent="D"]
+margin_right = 1024.0
+margin_bottom = 100.0
+custom_fonts/font = SubResource( 9 )
+text = "Move"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack" type="Label" parent="D"]
+margin_top = 350.0
+margin_right = 512.0
+margin_bottom = 450.0
+custom_fonts/font = SubResource( 9 )
+text = "Attack"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Attack2" type="Label" parent="D"]
+margin_left = 512.0
+margin_top = 350.0
+margin_right = 1024.0
+margin_bottom = 450.0
+custom_fonts/font = SubResource( 9 )
+text = "Powerups"
+align = 1
+valign = 1
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="animation_finished" from="Animations" to="." method="_on_Animations_animation_finished"]
