@@ -3,4 +3,5 @@ extends Control
 
 
 func _ready():
-	Music.play_track("menu")
+	if not Music.playing:
+		Music.play_track("menu")

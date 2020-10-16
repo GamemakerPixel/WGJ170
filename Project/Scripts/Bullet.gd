@@ -22,9 +22,11 @@ func load_graphics():
 	if not friendly:
 		$Sprite.play("enemy")
 		$Sprite/Particles2D.process_material = load("res://Resources/Particles/EnemyBullet.tres")
+		$Explode.process_material = load("res://Resources/Particles/EnemyExplode.tres")
 
 func _physics_process(delta):
-	position += direction * SPEED
+	if not get_parent().paused:
+		position += direction * SPEED
 
 func left_screen():
 	queue_free()
@@ -40,6 +42,15 @@ func hit(body):
 			hack()
 	if body.name == "Player" and not friendly:
 		body.update_health(-1)
+		hack()
 
 func hack():
+	print("EXPLODE")
+	$CollisionShape2D.disabled = true
+	direction = Vector2()
+	$Explode.emitting = true
+	$ExplodeTime.start()
+	$Sprite.hide()
+
+func _on_ExplodeTime_timeout():
 	queue_free()

@@ -5,7 +5,7 @@
 [ext_resource path="res://Art/WGJ170 Enemy Bullet.png" type="Texture" id=3]
 [ext_resource path="res://Resources/Particles/FriendlyBullet.tres" type="Material" id=4]
 [ext_resource path="res://Audio/Sound/shoot.wav" type="AudioStream" id=5]
-[ext_resource path="res://Scripts/SoundFX2d.gd" type="Script" id=6]
+[ext_resource path="res://Resources/Particles/FriendlyExplode.tres" type="Material" id=6]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -48,7 +48,6 @@ script = ExtResource( 2 )
 scale = Vector2( 2, 2 )
 frames = SubResource( 5 )
 animation = "friendly"
-frame = 1
 playing = true
 
 [node name="Particles2D" type="Particles2D" parent="Sprite"]
@@ -67,6 +66,17 @@ rect = Rect2( -8, -2, 16, 4 )
 [node name="FX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )
 volume_db = -10.602
-script = ExtResource( 6 )
+bus = "Game Sound"
+
+[node name="Explode" type="Particles2D" parent="."]
+position = Vector2( 14, 0 )
+emitting = false
+amount = 50
+one_shot = true
+explosiveness = 1.0
+process_material = ExtResource( 6 )
+
+[node name="ExplodeTime" type="Timer" parent="."]
 [connection signal="body_entered" from="." to="." method="hit"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="left_screen"]
+[connection signal="timeout" from="ExplodeTime" to="." method="_on_ExplodeTime_timeout"]

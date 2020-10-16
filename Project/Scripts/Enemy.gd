@@ -31,7 +31,7 @@ func _process(delta):
 	update()
 
 func _physics_process(delta):
-	if loaded:
+	if loaded and not get_parent().paused:
 		if state == State.SEARCHING:
 			move_and_slide((SPEED / 2) * direction)
 		else:
